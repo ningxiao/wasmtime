@@ -1,0 +1,20 @@
+{
+    "name": "hello-world",
+    "version": "0.1.0",
+    "private": true,
+    "description": "wasm使用wasmtime容器",
+    "scripts": {
+        "build":"npm run build:wasm32 && npm run build:unknown",
+        "build:wasm32": "cargo build --release --target wasm32-wasi",
+        "build:unknown": "cargo build --release --target wasm32-unknown-unknown",
+        "sh:wasi": "./tests/wasi.sh",
+        "deno:wasi":"deno run --allow-net ./tests/wasi.ts",
+        "node:wasi": "node --experimental-wasi-unstable-preview1 ./tests/wasi.js",
+        "start:lib": "wasmer run target/wasm32-wasi/release/hello_world.wasm -i add_sum 44 22",
+        "start:main": "wasmer run target/wasm32-wasi/release/hello-world.wasm --dir=. /opt/www/wasmtime/hello-world"
+    },
+    "engines": {
+        "node": ">=14 <19",
+        "yarn": ">=1.22"
+    }
+}
