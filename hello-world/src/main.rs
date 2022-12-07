@@ -1,8 +1,9 @@
 use futures::executor::block_on;
 use std::fs::File;
 use std::io::prelude::*;
+use std::io::Read;
 #[link(wasm_import_module = "wasm_import_module")]
-extern {
+extern "C" {
     fn jsAbs(input: i32) -> u32;
 }
 struct Song {
@@ -37,14 +38,14 @@ async fn async_main() {
     // 若两个都被阻塞，那么`async main`会变成阻塞状态，然后让出线程所有权，并将其交给`main`函数中的`block_on`执行器
     futures::join!(f1, f2);
 }
-fn main() -> std::io::Result<()> {
+fn main() -> Result<(), std::io::Error> {
     let mut log_file = File::create("./logs/info.log")?;
     let mut rs_file = std::fs::File::open("./src/main.rs").unwrap();
     let mut contents = String::new();
     rs_file.read_to_string(&mut contents).unwrap();
     log_file.write_all(b"Hello, wasi!")?;
     println!("Hello, wasi!");
-    print!("{}", contents);
+    println!("{}", contents);
     block_on(async_main());
     unsafe {
         println!("Absolute value of -20 according to C: {}", jsAbs(-20));
