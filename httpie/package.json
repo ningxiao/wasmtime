@@ -1,0 +1,16 @@
+{
+    "name": "httpie",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Rust的请求小工具",
+    "scripts": {
+        "build":"cargo build --release",
+        "doc":"cargo doc --open",
+        "test":"cargo test",
+        "test:post":"cargo build --quiet && target/debug/httpie post https://ftbc.fe.test.sankuai.com/api/wbr/data/getWbrWebData dateType='week' endDate='20221218' startDate='20221212'"
+    },
+    "engines": {
+        "node": ">=14 <19",
+        "yarn": ">=1.22"
+    }
+}

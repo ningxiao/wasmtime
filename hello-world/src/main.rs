@@ -2,10 +2,6 @@ use futures::executor::block_on;
 use std::fs::File;
 use std::io::prelude::*;
 use std::io::Read;
-#[link(wasm_import_module = "wasm_import_module")]
-extern "C" {
-    fn jsAbs(input: i32) -> u32;
-}
 struct Song {
     author: String,
     name: String,
@@ -47,8 +43,5 @@ fn main() -> Result<(), std::io::Error> {
     println!("Hello, wasi!");
     println!("{}", contents);
     block_on(async_main());
-    unsafe {
-        println!("Absolute value of -20 according to C: {}", jsAbs(-20));
-    }
     Ok(())
 }

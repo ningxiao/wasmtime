@@ -1,0 +1,15 @@
+{
+    "name": "httpie",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Rust的请求小工具",
+    "scripts": {
+        "start":"cargo run",
+        "build":"cargo build --release",
+        "doc":"cargo doc --open"
+    },
+    "engines": {
+        "node": ">=14 <19",
+        "yarn": ">=1.22"
+    }
+}

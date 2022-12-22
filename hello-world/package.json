@@ -8,8 +8,8 @@
         "build:wasm32": "cargo build --release --target wasm32-wasi",
         "build:unknown": "cargo build --release --target wasm32-unknown-unknown",
         "sh:wasi": "./tests/wasi.sh",
-        "deno:wasi":"deno run --allow-net ./tests/wasi.ts",
         "node:wasi": "node --experimental-wasi-unstable-preview1 ./tests/wasi.js",
+        "start":"cargo run",
         "start:lib": "wasmer run target/wasm32-wasi/release/hello_world.wasm -i add_sum 44 22",
         "start:main": "wasmer run target/wasm32-wasi/release/hello-world.wasm --dir=. /opt/www/wasmtime/hello-world"
     },
