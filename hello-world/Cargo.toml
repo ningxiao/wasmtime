@@ -7,4 +7,5 @@ edition = "2021"
 crate-type = ['cdylib']
 [dependencies]
 futures = "0.3.25"
-
+[profile.release]
+lto = true
